@@ -1,9 +1,11 @@
+import { FC } from 'react';
 import { Layout } from '../components/Layout';
+import { MainScreen } from '../components/sections/MainScreen';
 
-const Home = () => {
+const Home: FC = () => {
 	return (
 		<Layout title='Home Page'>
-			<p>Home</p>
+			<MainScreen />
 		</Layout>
 	);
 };

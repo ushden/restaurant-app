@@ -3,13 +3,14 @@ import Link from 'next/link';
 
 type AProps = {
 	href: string;
-	text: string;
+	text?: string;
+	className?: string;
 };
 
-export const A: FC<AProps> = ({ href, text }) => {
+export const A: FC<AProps> = ({ href, text, children, className }) => {
 	return (
 		<Link href={href}>
-			<a>{text}</a>
+			<a className={className}>{text || children}</a>
 		</Link>
 	);
 };
