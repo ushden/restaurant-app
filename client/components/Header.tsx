@@ -3,6 +3,10 @@ import Image from 'next/image';
 import { FC, useState } from 'react';
 import { MenuBurger } from './svg/MenuBurger';
 import { Close } from './svg/Close';
+import { GiShoppingCart } from 'react-icons/gi';
+import { IconContext } from 'react-icons';
+import { IoMdArrowDropdown } from 'react-icons/io';
+import { HiPhoneOutgoing } from 'react-icons/hi';
 
 export const Header: FC = () => {
 	const [menuVisible, setMenuVisible] = useState(false);
@@ -17,7 +21,7 @@ export const Header: FC = () => {
 					alt='Themes.dev Logo'
 				/>
 				<span className='text-xl font-medium text-restDark font-serif'>
-					Ресторан Веранда
+					Ресторан Любой
 				</span>
 			</div>
 			<button
@@ -28,25 +32,71 @@ export const Header: FC = () => {
 			<nav
 				className={`absolute ${
 					menuVisible ? 'flex' : 'hidden'
-				} md:relative top-16 left-0 md:top-0 z-99 bg-restWhite md:bg-restBg md:flex flex-col font-semibold w-full bg-white shadow-md rounded-lg p-3 md:w-auto md:rounded-none md:shadow-none md:p-0`}>
+				} md:relative top-16 left-0 md:top-0 z-99 bg-restWhite md:bg-restBg md:flex flex-col md:flex-row md:justify-between md:items-center font-semibold w-full bg-white shadow-md rounded-lg p-3 md:w-auto md:rounded-none md:shadow-none md:p-0`}>
 				<ul className='text-center md:flex md:flex-row md:space-x-6'>
-					<li className='pb-2'>
-						<A href='/' text='О нас' />
+					<li className='pb-2 hover:text-yellow-500 transition'>
+						<A
+							href='/'
+							text='О нас'
+							className='hover:text-yellow-500 transition'
+						/>
 					</li>
 					<li className='pb-2'>
-						<A href='/' text='Меню' />
+						<A
+							href='/menu'
+							text='Меню'
+							className='hover:text-yellow-500 transition'
+						/>
 					</li>
 					<li className='pb-2'>
-						<A href='/' text='Доставка' />
+						<A
+							href='/'
+							text='Доставка'
+							className='hover:text-yellow-500 transition'
+						/>
 					</li>
 					<li className='pb-2'>
-						<A href='/' text='Отзывы' />
+						<A
+							href='/'
+							text='Отзывы'
+							className='hover:text-yellow-500 transition'
+						/>
 					</li>
 					<li className='pb-2'>
-						<A href='/' text='Контакты' />
+						<A
+							href='/'
+							text='Контакты'
+							className='hover:text-yellow-500 transition'
+						/>
 					</li>
 				</ul>
 			</nav>
+			<div className='hidden md:flex md:flex-col items-center cursor-pointer'>
+				<IconContext.Provider value={{ className: 'text-yellow-500 text-2xl' }}>
+					<div className='flex font-semibold'>
+						<GiShoppingCart />
+						<p className='md:ml-1'>48 грн</p>
+					</div>
+					<div className='flex'>
+						<p>Товаров: 5</p>
+						<span>
+							<IoMdArrowDropdown />
+						</span>
+					</div>
+				</IconContext.Provider>
+			</div>
+			<div className='hidden md:block'>
+				<div className='flex items-center'>
+					<IconContext.Provider
+						value={{ className: 'text-yellow-500 text-xl' }}>
+						<HiPhoneOutgoing />
+					</IconContext.Provider>
+					<a href='tel:0977637155' className='font-semibold ml-1'>
+						+38 097 763 71 55
+					</a>
+				</div>
+				<p className='text-right'>Позвони нам</p>
+			</div>
 		</header>
 	);
 };
