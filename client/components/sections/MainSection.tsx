@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const MainScreen = () => {
 	return (
-		<section className='flex justify-between items-center mb-10'>
+		<section className='flex justify-between items-center mb-10 px-2 lg:px-20 md:p-2'>
 			<div>
 				<div className='mb-10'>
 					<h2 className='font-bold text-4xl mb-5 lg:text-5xl'>

@@ -3,16 +3,15 @@ import Image from 'next/image';
 import { FC, useState } from 'react';
 import { MenuBurger } from './svg/MenuBurger';
 import { Close } from './svg/Close';
-import { GiShoppingCart } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import { IoMdArrowDropdown } from 'react-icons/io';
 import { HiPhoneOutgoing } from 'react-icons/hi';
+import { ShoppingCart } from './sections/menu/ShoppingCart';
 
 export const Header: FC = () => {
 	const [menuVisible, setMenuVisible] = useState(false);
 
 	return (
-		<header className='flex flex-wrap flex-row justify-between items-center md:space-x-4 relative md:p-2 mb-3'>
+		<header className='flex flex-wrap flex-row justify-between items-center md:space-x-4 relative px-2 lg:px-20 md:p-2 mb-3'>
 			<div className='flex items-center'>
 				<Image
 					width={70}
@@ -71,19 +70,8 @@ export const Header: FC = () => {
 					</li>
 				</ul>
 			</nav>
-			<div className='hidden md:flex md:flex-col items-center cursor-pointer'>
-				<IconContext.Provider value={{ className: 'text-yellow-500 text-2xl' }}>
-					<div className='flex font-semibold'>
-						<GiShoppingCart />
-						<p className='md:ml-1'>48 грн</p>
-					</div>
-					<div className='flex'>
-						<p>Товаров: 5</p>
-						<span>
-							<IoMdArrowDropdown />
-						</span>
-					</div>
-				</IconContext.Provider>
+			<div className='hidden md:block'>
+				<ShoppingCart />
 			</div>
 			<div className='hidden md:block'>
 				<div className='flex items-center'>

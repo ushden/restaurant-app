@@ -6,7 +6,7 @@ export const WhyAs = () => {
 	return (
 		<IconContext.Provider
 			value={{ className: 'text-5xl text-yellow-500 mb-2' }}>
-			<section className='grid grid-cols-2 gap-5 text-center md:grid-cols-4 mb-5'>
+			<section className='grid grid-cols-2 gap-5 text-center md:grid-cols-4 mb-7 px-2 lg:px-20 md:p-2'>
 				<div className='flex flex-col items-center'>
 					<GiDeliveryDrone />
 					<p>Бесплатная доставка от 499 грн</p>
