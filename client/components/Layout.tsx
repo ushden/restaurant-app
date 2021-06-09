@@ -8,7 +8,7 @@ type LayoutProps = {
 
 export const Layout: FC<LayoutProps> = ({ children, title }) => {
 	return (
-		<div className='bg-rest bg-contain bg-repeat max-w-7xl'>
+		<div className='bg-rest bg-contain bg-repeat xl:px-24'>
 			<Head>
 				<link rel='icon' href='/favicon.ico' type='image/x-icon' />
 				<link
