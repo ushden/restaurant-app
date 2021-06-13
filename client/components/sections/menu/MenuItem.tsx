@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import StarRatings from 'react-star-ratings';
 import { BsPlusCircleFill } from 'react-icons/bs';
+import { Dish } from '../../../types';
+import { FC } from 'react';
 
-export const MenuItem = () => {
+interface MenuItemProps {
+	dish: Dish;
+}
+
+export const MenuItem: FC<MenuItemProps> = ({ dish }) => {
 	return (
 		<article className='bg-white p-2 shadow-xl min-w-max mb-5 relative'>
 			<div className='flex justify-center items-center'>
@@ -14,18 +20,16 @@ export const MenuItem = () => {
 				/>
 			</div>
 			<div className='flex items-center justify-between space-x-5 mb-2'>
-				<p className='font-semibold text-lg'>Рыс с овощами</p>
-				<p>480 г</p>
+				<p className='font-semibold text-lg'>{dish.name}</p>
+				<p>{dish.weight}</p>
 			</div>
 			<div className='w-48 mb-2'>
-				<p className='font-light'>
-					Рыс, яйца, соус, морковка, лучок, папайя, шпинат, горох, мороженое
-				</p>
+				<p className='font-light'>{dish.ingredients}</p>
 			</div>
 			<div className='flex items-center justify-between mb-8'>
 				<div>
 					<StarRatings
-						rating={3}
+						rating={dish.rate}
 						starRatedColor='orange'
 						starHoverColor='orange'
 						changeRating={() => console.log('change rating')}
@@ -34,7 +38,7 @@ export const MenuItem = () => {
 						starSpacing='4px'
 					/>
 				</div>
-				<div className='font-semibold'>480 грн</div>
+				<div className='font-semibold'>{dish.price}</div>
 			</div>
 			<div className='absolute -right-3 -bottom-3 cursor-pointer text-yellow-500 text-5xl'>
 				<BsPlusCircleFill />
