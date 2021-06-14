@@ -1,15 +1,67 @@
-import { FC } from 'react';
+import { useEffect } from 'react';
+import { FC, memo, useMemo, useState, MouseEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { useLocalStorage } from '../../../hooks/useLocalStorage';
+import { FILTER_ALL } from '../../../constants';
+import { addNewDishesAction } from '../../../store/order/orderActions';
+import { selectOrder } from '../../../store/selectors';
 import { Dish } from '../../../types';
 import { FilterButton } from './FilterButton';
 import { MenuItem } from './MenuItem';
 import { ShoppingCart } from './ShoppingCart';
 
 interface MenuSectionProps {
-	dishes?: Array<Dish>;
+	dishes: Array<Dish>;
 }
 
-export const MenuSection: FC<MenuSectionProps> = ({ dishes }) => {
+export const MenuSection: FC<MenuSectionProps> = memo(({ dishes }) => {
+	const [selectItem, setSelectItem] = useState<string | null>(FILTER_ALL);
+	const [filterDishes, setFilterDishes] = useState<Array<Dish>>(dishes);
+	const [order, setOrder] = useLocalStorage('order', {});
+
+	const cartState = useSelector(selectOrder);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (order) {
+			return console.log('full cart');
+		}
+
+		return console.log('empty cart');
+		// setOrder(cartState);
+	}, [cartState]);
+
+	const dishesTypes = useMemo(() => {
+		return dishes?.reduce(
+			(acc, el) => {
+				if (!acc.includes(el.type)) {
+					acc.push(el.type);
+					return acc;
+				}
+
+				return acc;
+			},
+			[FILTER_ALL]
+		);
+	}, []);
+
+	const handleClickOnFilterButton = (e: MouseEvent<HTMLButtonElement>) => {
+		const currType = e.currentTarget.textContent;
+
+		e.preventDefault();
+
+		setSelectItem(currType);
+		if (currType === FILTER_ALL) {
+			return setFilterDishes(dishes);
+		}
+		setFilterDishes(dishes.filter((el) => el.type === currType));
+	};
+
+	const handleClickToShopingCartButton = (dish: Dish) => {
+		dispatch(addNewDishesAction(dish));
+	};
+
 	return (
 		<section
 			className='border-2 border-yellow-500 border-b-0 border-l-0 border-r-0 pt-10 mb-4'
@@ -26,16 +78,27 @@ export const MenuSection: FC<MenuSectionProps> = ({ dishes }) => {
 				</div>
 			</div>
 			<div className='flex justify-between mb-4'>
-				<div className='flex max-w-full overflow-x-scroll py-2 space-x-3 md:space-x-4 rest-scroll-x-0 mb-4 px-2 lg:px-20'>
-					<FilterButton />
+				<div className='flex max-w-full overflow-x-scroll outline-none py-2 space-x-3 md:space-x-4 rest-scroll-x-0 mb-4 px-2 lg:px-20'>
+					{dishesTypes?.map((text) => (
+						<FilterButton
+							text={text}
+							key={text}
+							selectItem={selectItem}
+							onClick={handleClickOnFilterButton}
+						/>
+					))}
 				</div>
 				<div className='hidden md:block md:ml-20'>
 					<ShoppingCart />
 				</div>
 			</div>
 			<div className='flex flex-row rest-scroll-x-0 max-w-full overflow-x-scroll space-x-6 px-2 lg:px-20 lg:flex-wrap'>
-				{dishes?.map((dish) => (
-					<MenuItem key={dish._id as string} dish={dish} />
+				{filterDishes?.map((dish) => (
+					<MenuItem
+						key={dish._id}
+						dish={dish}
+						addToShopingCart={handleClickToShopingCartButton}
+					/>
 				))}
 			</div>
 			<div className='lg:hidden flex justify-center'>
@@ -45,4 +108,4 @@ export const MenuSection: FC<MenuSectionProps> = ({ dishes }) => {
 			</div>
 		</section>
 	);
-};
+});

@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 const dishesSchema = new Schema({
 	image: String,
 	name: String,
-	weight: String,
-	price: String,
+	weight: Number,
+	price: Number,
 	ingredients: String,
 	type: String,
 	rate: {

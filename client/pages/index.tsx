@@ -8,12 +8,10 @@ import { WhyAs } from '../components/sections/WhyAsSection';
 import { Dish } from '../types';
 
 interface HomeProps {
-	dishes?: Array<Dish>;
+	dishes: Array<Dish>;
 }
 
 const Home: FC<HomeProps> = ({ dishes }) => {
-	console.log(dishes);
-
 	return (
 		<Layout title='Home Page'>
 			<MainScreen />
