@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { FILTER_ALL } from '../../../constants';
-import { addNewDishesAction } from '../../../store/order/orderActions';
+import {
+	addNewDishesAction,
+	updateOrderStateOfLocalStorage,
+} from '../../../store/order/orderActions';
 import { selectOrder } from '../../../store/selectors';
-import { Dish } from '../../../types';
+import { Dish, OrderState } from '../../../types';
 import { FilterButton } from './FilterButton';
 import { MenuItem } from './MenuItem';
-import { ShoppingCart } from './ShoppingCart';
+import { ShoppingCart } from '../../shopping-cart/ShoppingCart';
 
 interface MenuSectionProps {
 	dishes: Array<Dish>;
@@ -18,19 +21,24 @@ interface MenuSectionProps {
 export const MenuSection: FC<MenuSectionProps> = memo(({ dishes }) => {
 	const [selectItem, setSelectItem] = useState<string | null>(FILTER_ALL);
 	const [filterDishes, setFilterDishes] = useState<Array<Dish>>(dishes);
-	const [order, setOrder] = useLocalStorage('order', {});
+	const [order, setOrder] = useLocalStorage<OrderState>('order', {
+		order: {},
+		dishesCount: 0,
+		totalPrice: 0,
+	});
 
-	const cartState = useSelector(selectOrder);
+	const orderState = useSelector(selectOrder);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (order) {
-			return console.log('full cart');
+		if (order.dishesCount) {
+			dispatch(updateOrderStateOfLocalStorage(order));
 		}
+	}, []);
 
-		return console.log('empty cart');
-		// setOrder(cartState);
-	}, [cartState]);
+	useEffect(() => {
+		setOrder(orderState);
+	}, [orderState]);
 
 	const dishesTypes = useMemo(() => {
 		return dishes?.reduce(

@@ -5,7 +5,7 @@ import { MenuBurger } from './svg/MenuBurger';
 import { Close } from './svg/Close';
 import { IconContext } from 'react-icons';
 import { HiPhoneOutgoing } from 'react-icons/hi';
-import { ShoppingCart } from './sections/menu/ShoppingCart';
+import { ShoppingCart } from './shopping-cart/ShoppingCart';
 
 export const Header: FC = () => {
 	const [menuVisible, setMenuVisible] = useState(false);

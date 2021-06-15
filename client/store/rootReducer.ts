@@ -2,9 +2,11 @@ import { orderReducer } from './order/orderReducer';
 import { combineReducers, applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { shoppingCartReducer } from './shoppingCart/shoppingCartReducer';
 
 const rootReducer = combineReducers({
 	order: orderReducer,
+	shoppingCart: shoppingCartReducer,
 });
 
 const store = createStore(

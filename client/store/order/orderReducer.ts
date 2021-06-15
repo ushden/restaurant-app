@@ -24,6 +24,12 @@ export const orderReducer = (
 				totalPrice: state.totalPrice + action.payload.price,
 			};
 
+		case OrderActions.UPDATE_ORDER:
+			return {
+				...action.payload,
+				order: { ...action.payload.order },
+			};
+
 		default:
 			return { ...state };
 	}
