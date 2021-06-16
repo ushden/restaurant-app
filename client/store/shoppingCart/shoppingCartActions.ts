@@ -1,6 +1,6 @@
 import { CartActions } from '../../types';
 
-export const openShoppingCartActions = () => ({ type: CartActions.OPEN_CART });
-export const closeShoppingCartActions = () => ({
+export const openShoppingCartAction = () => ({ type: CartActions.OPEN_CART });
+export const closeShoppingCartAction = () => ({
 	type: CartActions.CLOSE_CART,
 });

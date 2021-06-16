@@ -23,12 +23,30 @@ export const orderReducer = (
 				dishesCount: (state.dishesCount += 1),
 				totalPrice: state.totalPrice + action.payload.price,
 			};
-
+		case OrderActions.MINUS_ONE_DISHES:
+			return {
+				...state,
+				order: { ...action.payload.order },
+				totalPrice: action.payload.totalPrice,
+				dishesCount: action.payload.dishesCount,
+			};
+		case OrderActions.DELETE_DESHES:
+			return {
+				...state,
+				order: {
+					...action.payload.order,
+				},
+				totalPrice: action.payload.totalPrice,
+				dishesCount: action.payload.dishesCount,
+			};
 		case OrderActions.UPDATE_ORDER:
 			return {
 				...action.payload,
 				order: { ...action.payload.order },
 			};
+
+		case OrderActions.CLEAR_ORDER:
+			return defaultState;
 
 		default:
 			return { ...state };

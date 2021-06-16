@@ -9,10 +9,11 @@ import {
 	updateOrderStateOfLocalStorage,
 } from '../../../store/order/orderActions';
 import { selectOrder } from '../../../store/selectors';
-import { Dish, OrderState } from '../../../types';
+import { AlertTypes, Dish, OrderState } from '../../../types';
 import { FilterButton } from './FilterButton';
 import { MenuItem } from './MenuItem';
 import { ShoppingCart } from '../../shopping-cart/ShoppingCart';
+import { showAlert } from '../../../store/alert/alertActions';
 
 interface MenuSectionProps {
 	dishes: Array<Dish>;
@@ -68,6 +69,7 @@ export const MenuSection: FC<MenuSectionProps> = memo(({ dishes }) => {
 
 	const handleClickToShopingCartButton = (dish: Dish) => {
 		dispatch(addNewDishesAction(dish));
+		dispatch(showAlert(AlertTypes.success, 'Товар успешно добавлен!'));
 	};
 
 	return (

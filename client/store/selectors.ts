@@ -6,3 +6,5 @@ export const selectOrder = (state: RootState) => state.order;
 
 export const selectShoppingCartIsOpen = (state: RootState) =>
 	state.shoppingCart.isOpen;
+
+export const selectAlertState = (state: RootState) => state.alert;

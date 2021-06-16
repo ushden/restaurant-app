@@ -4,7 +4,7 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { FC, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDishesCount, selectTotalPrice } from '../../store/selectors';
-import { openShoppingCartActions } from '../../store/shoppingCart/shoppingCartActions';
+import { openShoppingCartAction } from '../../store/shoppingCart/shoppingCartActions';
 
 export const ShoppingCart: FC = memo(() => {
 	const totalPrice = useSelector(selectTotalPrice);
@@ -14,7 +14,7 @@ export const ShoppingCart: FC = memo(() => {
 	return (
 		<div
 			className='flex flex-col items-center cursor-pointer'
-			onClick={() => dispatch(openShoppingCartActions())}>
+			onClick={() => dispatch(openShoppingCartAction())}>
 			<IconContext.Provider value={{ className: 'text-yellow-500 text-2xl' }}>
 				<div className='flex font-semibold'>
 					<GiShoppingCart />
