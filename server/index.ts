@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import fileUpload from 'express-fileupload';
 
 import dishesRouter from './routes/dishes';
 
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload());
 
 app.use('/api/dishes', dishesRouter);
 

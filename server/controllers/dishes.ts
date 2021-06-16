@@ -13,6 +13,7 @@ export const getAllDishes = async (req: Request, res: Response) => {
 
 export const addDishes = async (req: Request, res: Response) => {
 	const { dishes } = req.body;
+	const { image, name, weight, price, ingredients, type } = dishes;
 
 	const newDishes = new Dishes(dishes);
 	try {
