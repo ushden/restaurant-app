@@ -5,6 +5,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
 import dishesRouter from './routes/dishes';
+import userRouter from './routes/user';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(fileUpload());
 
 app.use('/api/dishes', dishesRouter);
+app.use('/api/user', userRouter);
 
 mongoose
 	.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

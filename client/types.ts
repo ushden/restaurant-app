@@ -101,3 +101,24 @@ interface hideAlert {
 }
 
 export type AlertActionTypes = showAlert | hideAlert;
+
+export interface User {
+	_id: string;
+	name: string;
+	roles: Array<string>;
+}
+export interface UserState {
+	user: User;
+	token: string;
+}
+
+export enum UserActions {
+	ADMIN_LOGIN = 'ADMIN_LOGIN',
+}
+
+interface login {
+	type: UserActions.ADMIN_LOGIN;
+	payload: UserState;
+}
+
+export type UserActionsType = login;

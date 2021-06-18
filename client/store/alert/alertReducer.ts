@@ -8,7 +8,7 @@ import {
 const defaultState: AlertState = {
 	visible: false,
 	type: AlertTypes.error,
-	message: '',
+	message: 'Сообщение',
 };
 
 export const alertReducer = (

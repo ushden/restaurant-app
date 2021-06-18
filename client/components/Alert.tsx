@@ -14,7 +14,7 @@ export const Alert: FC = memo(() => {
 		if (visible) {
 			setTimeout(() => {
 				dispatch(hideAlert());
-			}, 2000);
+			}, 4000);
 		}
 	}, [visible]);
 
