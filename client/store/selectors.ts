@@ -8,3 +8,5 @@ export const selectShoppingCartIsOpen = (state: RootState) =>
 	state.shoppingCart.isOpen;
 
 export const selectAlertState = (state: RootState) => state.alert;
+
+export const selectIsAuth = (state: RootState) => state.user.isAuth;

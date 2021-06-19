@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import cookieParser from 'cookie-parser';
 
 import dishesRouter from './routes/dishes';
 import userRouter from './routes/user';
@@ -16,17 +17,30 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(
+	cors({
+		credentials: true,
+		origin: process.env.CLIENT_URL,
+	})
+);
 app.use(fileUpload());
 
 app.use('/api/dishes', dishesRouter);
 app.use('/api/user', userRouter);
 
-mongoose
-	.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => {
+const startServer = async () => {
+	try {
+		await mongoose.connect(uri, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		});
 		app.listen(PORT, () => console.log(`Server run in port ${PORT}`));
-	})
-	.catch((e) => console.log(e.message));
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+startServer();
 
 mongoose.set('useFindAndModify', false);

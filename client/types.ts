@@ -110,6 +110,7 @@ export interface User {
 export interface UserState {
 	user: User;
 	token: string;
+	isAuth: boolean;
 }
 
 export enum UserActions {

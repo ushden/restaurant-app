@@ -1,8 +1,8 @@
 import { UserState, UserActions } from './../../types';
 import { ThunkAction } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import axios from 'axios';
 
+import $api from '../../http';
 import { RootState } from './../rootReducer';
 import { showAlert } from '../alert/alertActions';
 import { AlertTypes } from '../../types';
@@ -18,13 +18,10 @@ export const loginAdmin = (
 ): ThunkAction<void, RootState, unknown, AnyAction> => {
 	return async (dispatch) => {
 		try {
-			const res = await axios.post(
-				'http://localhost:4848/api/user/adminLogin',
-				{
-					name,
-					password,
-				}
-			);
+			const res = await $api.post<UserState>('/api/user/adminLogin', {
+				name,
+				password,
+			});
 
 			const user: UserState = res.data;
 			localStorage.setItem('token', user.token);

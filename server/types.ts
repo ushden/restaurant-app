@@ -1,4 +1,4 @@
 export interface JWTTypes {
-	id: string;
+	_id: string;
 	roles: Array<string>;
 }

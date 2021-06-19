@@ -1,7 +1,14 @@
 import express from 'express';
 import { check } from 'express-validator';
 
-import { registration, adminLogin, getUsers } from '../controllers/user';
+import {
+	registration,
+	adminLogin,
+	getUsers,
+	refreshToken,
+	logout,
+} from '../controllers/user';
+import { authMiddleware } from '../middleware/authMiddleware';
 import { roleMiddleware } from '../middleware/roleMiddleware';
 
 const router = express.Router();
@@ -17,6 +24,8 @@ router.post(
 	registration
 );
 router.post('/adminLogin', adminLogin);
+router.get('/refresh', authMiddleware, refreshToken);
+router.get('/logout', authMiddleware, logout);
 router.get('/getUsers', roleMiddleware(['ADMIN']), getUsers);
 
 export default router;

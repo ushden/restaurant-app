@@ -7,6 +7,7 @@ const initialState: UserState = {
 		roles: [],
 	},
 	token: '',
+	isAuth: false,
 };
 
 export const userReducer = (
@@ -22,6 +23,7 @@ export const userReducer = (
 					roles: [...action.payload.user.roles],
 				},
 				token: action.payload.token,
+				isAuth: true,
 			};
 
 		default:

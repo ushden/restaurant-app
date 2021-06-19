@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
 import { Provider } from 'react-redux';
+
 import { Alert } from '../components/Alert';
 import { ShoppingCatrModal } from '../components/shopping-cart/ShoppingCatrModal';
 import store from '../store/rootReducer';

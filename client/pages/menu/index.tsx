@@ -20,7 +20,7 @@ export default Menu;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	console.log(ctx.query);
-	const res = await fetch('http://localhost:4848/api/dishes');
+	const res = await fetch(`${process.env.SERVER_URL}/api/dishes`);
 	const dishes = await res.json();
 
 	return {

@@ -16,7 +16,7 @@ export const roleMiddleware = (roles: Array<string>) => {
 					.json({ message: 'Пользователь не авторизован!' });
 			}
 
-			const secret = process.env.SECRET_KEY;
+			const secret = process.env.JWT_ACCESS_SECRET_KEY;
 
 			if (secret) {
 				const userData: any = jwt.verify(token, secret);
