@@ -8,6 +8,7 @@ const initialState: UserState = {
 	},
 	token: '',
 	isAuth: false,
+	loading: true,
 };
 
 export const userReducer = (
@@ -25,7 +26,10 @@ export const userReducer = (
 				token: action.payload.token,
 				isAuth: true,
 			};
-
+		case UserActions.SHOW_USER_LOADING:
+			return { ...state, loading: true };
+		case UserActions.HIDE_USER_LOADING:
+			return { ...state, loading: false };
 		default:
 			return { ...state };
 	}

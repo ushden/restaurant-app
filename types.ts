@@ -111,10 +111,21 @@ export interface UserState {
 	user: User;
 	token: string;
 	isAuth: boolean;
+	loading: boolean;
 }
 
 export enum UserActions {
 	ADMIN_LOGIN = 'ADMIN_LOGIN',
+	SHOW_USER_LOADING = 'SHOW_USER_LOADING',
+	HIDE_USER_LOADING = 'HIDE_USER_LOADING',
+}
+
+interface showUserLoading {
+	type: UserActions.SHOW_USER_LOADING;
+}
+
+interface hideUserLoading {
+	type: UserActions.HIDE_USER_LOADING;
 }
 
 interface login {
@@ -122,4 +133,4 @@ interface login {
 	payload: UserState;
 }
 
-export type UserActionsType = login;
+export type UserActionsType = login | showUserLoading | hideUserLoading;

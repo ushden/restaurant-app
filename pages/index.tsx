@@ -23,8 +23,7 @@ const Home: FC<HomeProps> = ({ dishes }) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-	console.log(ctx.query);
+export const getServerSideProps: GetServerSideProps = async () => {
 	const res = await fetch(`${process.env.SERVER_URL}/api/dishes`);
 	const dishes = await res.json();
 

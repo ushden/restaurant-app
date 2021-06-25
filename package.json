@@ -1,7 +1,12 @@
 {
-	"name": "my-app",
-	"version": "0.1.0",
+	"name": "restaurant-app",
+	"version": "1.1.0",
 	"private": true,
+	"author": {
+		"email": "ushden48@gmail.com",
+		"name": "Denis Ushkalov",
+		"url": "https://github.com/ushden"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",

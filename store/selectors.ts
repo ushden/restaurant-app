@@ -10,3 +10,4 @@ export const selectShoppingCartIsOpen = (state: RootState) =>
 export const selectAlertState = (state: RootState) => state.alert;
 
 export const selectIsAuth = (state: RootState) => state.user.isAuth;
+export const selectUserLoading = (state: RootState) => state.user.loading;

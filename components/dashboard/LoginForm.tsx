@@ -1,45 +1,23 @@
-import { useRouter } from 'next/dist/client/router';
 import Image from 'next/image';
-import { useState, MouseEvent, ChangeEvent, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { ChangeEvent, FC, MouseEvent } from 'react';
+
 import { Layout } from '../../components/Layout';
-import { showAlert } from '../../store/alert/alertActions';
-import { selectIsAuth } from '../../store/selectors';
-import { loginAdmin } from '../../store/user/userActions';
-import { AlertTypes } from '../../types';
 
-const AdminLogin = () => {
-	const dispatch = useDispatch();
-	const router = useRouter();
+interface LoginFormProps {
+	login: string;
+	password: string;
+	handleChangeLogin: (e: ChangeEvent<HTMLInputElement>) => void;
+	handleChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
+	handleClickSubmit: (e: MouseEvent<HTMLButtonElement>) => void;
+}
 
-	const [login, setLogin] = useState('');
-	const [password, setPassword] = useState('');
-	const isAuth = useSelector(selectIsAuth);
-
-	useEffect(() => {
-		if (isAuth) {
-			router.push('/rest-admin/dashboard');
-		}
-	}, [isAuth]);
-
-	const handleChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
-		setLogin(e.currentTarget.value);
-	};
-
-	const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-		setPassword(e.currentTarget.value);
-	};
-
-	const handleClickSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
-		if (login.trim() === '' || password.trim() === '') {
-			return dispatch(showAlert(AlertTypes.error, 'Заполните все поля!'));
-		}
-
-		dispatch(loginAdmin(login, password));
-	};
-
+export const LoginForm: FC<LoginFormProps> = ({
+	handleChangeLogin,
+	handleChangePassword,
+	handleClickSubmit,
+	login,
+	password,
+}) => {
 	return (
 		<Layout title='Войти'>
 			<section className='flex flex-col justify-start items-center h-screen w-full'>
@@ -87,5 +65,3 @@ const AdminLogin = () => {
 		</Layout>
 	);
 };
-
-export default AdminLogin;
