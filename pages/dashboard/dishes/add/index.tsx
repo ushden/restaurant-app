@@ -1,9 +1,15 @@
+import { GetServerSideProps } from 'next';
 import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import { LayoutDashboard } from '../../../../components/LayoutDashboard';
+import { Category } from '../../../../types';
 
-const AddDish = () => {
+interface AddDishProps {
+	categorys: Array<Category>;
+}
+
+const AddDish: FC<AddDishProps> = ({ categorys }) => {
 	const [name, setName] = useState('');
 	const [image, setImage] = useState('');
 
@@ -85,18 +91,11 @@ const AddDish = () => {
 							name='type'
 							id='dish-type'
 							className='border-gray-300 border w-full py-2 px-2 rounded-lg shadow-lg focus:outline-none focus:ring-blue-300 focus:ring-2'>
-							<option value='Закуски' className='text-black'>
-								Закуски
-							</option>
-							<option value='Салаты' className='text-black'>
-								Салаты
-							</option>
-							<option value='Пиццы' className='text-black'>
-								Пиццы
-							</option>
-							<option value='Десерты' className='text-black'>
-								Десерты
-							</option>
+							{categorys.map((c) => (
+								<option value={c.value} className='text-black' key={c._id}>
+									{c.value}
+								</option>
+							))}
 						</select>
 					</div>
 					<div className='flex flex-col items-center'>
@@ -131,3 +130,18 @@ const AddDish = () => {
 };
 
 export default AddDish;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+	try {
+		const res = await fetch(`${process.env.SERVER_URL}/api/dishes/getTypes`);
+		const categorys: Array<Category> = await res.json();
+
+		return {
+			props: { categorys },
+		};
+	} catch (error) {
+		return {
+			props: { error: error.response.data.message },
+		};
+	}
+};

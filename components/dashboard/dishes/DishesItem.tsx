@@ -11,7 +11,7 @@ interface DishesItemProps {
 
 export const DishesItem: FC<DishesItemProps> = ({ dish, onDelete }) => {
 	return (
-		<article className='flex flex-col md:flex-row items-center justify-around shadow-lg mb-4 p-1 md:p-3 animate-showCart'>
+		<article className='flex flex-col items-center justify-around shadow-lg mb-4 p-1 md:p-3 animate-showCart md:w-2/4 md:mx-auto'>
 			<div className='flex items-center justify-between w-full'>
 				<div className='flex items-center'>
 					<Image
@@ -26,7 +26,7 @@ export const DishesItem: FC<DishesItemProps> = ({ dish, onDelete }) => {
 					</div>
 				</div>
 			</div>
-			<div className='flex items-center justify-between w-full p-2'>
+			<div className='flex items-center justify-between md:justify-start md:space-x-4 w-full p-2'>
 				<A
 					href={`/dashboard/dishes/update/${dish._id}`}
 					text='Редактировать'

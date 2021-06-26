@@ -9,6 +9,16 @@ export interface Dish {
 	rate: Number;
 }
 
+export interface CategoryState {
+	message: string;
+	type?: Category;
+}
+
+export interface Category {
+	_id: string;
+	value: string;
+}
+
 export interface OrderState {
 	order: {
 		[key: string]: Array<Dish>;

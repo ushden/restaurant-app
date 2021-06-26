@@ -35,7 +35,7 @@ const Dishes: FC<DishesProps> = ({ dishes }) => {
 
 	return (
 		<LayoutDashboard title='Блюда'>
-			<div className='p-4'>
+			<div className='p-4 md:w-2/4 md:mx-auto'>
 				<A
 					href='/dashboard/dishes/add'
 					text='Добавить блюдо'

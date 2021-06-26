@@ -2,6 +2,7 @@ import { FC, memo, MouseEvent } from 'react';
 import { RiHomeSmileLine } from 'react-icons/ri';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { IoIosClose } from 'react-icons/io';
+import { FiFilter } from 'react-icons/fi';
 
 import { A } from '../A';
 import Image from 'next/image';
@@ -49,6 +50,12 @@ export const DashboardNavigation: FC<NavigationProps> = memo(
 							<IoFastFoodOutline className='text-blue-500' />
 							<span>
 								<A href='/dashboard/dishes' text='Блюда' />
+							</span>
+						</li>
+						<li className='flex flex-row items-center space-x-2 text-xl w-full border-b pb-2'>
+							<FiFilter className='text-blue-500' />
+							<span>
+								<A href='/dashboard/category' text='Категории' />
 							</span>
 						</li>
 					</ul>
