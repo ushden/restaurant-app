@@ -6,7 +6,7 @@ import { A } from '../../A';
 
 interface DishesItemProps {
 	dish: Dish;
-	onDelete: (e: MouseEvent<HTMLButtonElement>, id: string) => void;
+	onDelete: (e: MouseEvent<HTMLButtonElement>, id: string | undefined) => void;
 }
 
 export const DishesItem: FC<DishesItemProps> = ({ dish, onDelete }) => {
@@ -15,7 +15,7 @@ export const DishesItem: FC<DishesItemProps> = ({ dish, onDelete }) => {
 			<div className='flex items-center justify-between w-full'>
 				<div className='flex items-center'>
 					<Image
-						src='/images/header-bg-img.png'
+						src={`${dish.image}`}
 						alt='dish name'
 						width={120}
 						height={120}

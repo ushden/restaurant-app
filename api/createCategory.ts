@@ -1,7 +1,7 @@
 import api from '../http/index';
 import { CategoryState } from '../types';
 
-export const addCategory = async (value: string): Promise<CategoryState> => {
+export const createCategory = async (value: string): Promise<CategoryState> => {
 	try {
 		const response = await api.post<CategoryState>('/api/dishes/addType', {
 			value,

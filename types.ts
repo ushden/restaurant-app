@@ -1,13 +1,42 @@
 export interface Dish {
-	_id: string;
+	_id?: string;
 	image: string;
 	name: string;
-	weight: string;
+	weight: number;
 	price: number;
 	ingredients: string;
 	type: string;
-	rate: Number;
+	rate?: number;
 }
+
+export interface DishesState {
+	dish: Dish;
+	dishes: Array<Dish>;
+	loading: boolean;
+}
+
+export enum DishesActions {
+	CREATE_DISH = 'CREATE_DISH',
+	DELETE_DISH = 'DELETE_DISH',
+	GET_ALL_DISHES = 'GET_ALL_DISHES',
+}
+
+interface createDish {
+	type: DishesActions.CREATE_DISH;
+	payload: Dish;
+}
+
+interface deleteDish {
+	type: DishesActions.DELETE_DISH;
+	payload: string;
+}
+
+interface getAllDishes {
+	type: DishesActions.GET_ALL_DISHES;
+	payload: Array<Dish>;
+}
+
+export type DishesActionsType = deleteDish | createDish | getAllDishes;
 
 export interface CategoryState {
 	message: string;

@@ -11,3 +11,5 @@ export const selectAlertState = (state: RootState) => state.alert;
 
 export const selectIsAuth = (state: RootState) => state.user.isAuth;
 export const selectUserLoading = (state: RootState) => state.user.loading;
+
+export const selectDishes = (state: RootState) => state.dishes.dishes;

@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { addCategory } from '../../../../api/category';
+import { createCategory } from '../../../../api/createCategory';
 import { CategoryInput } from '../../../../components/dashboard/category/CategoryInput';
 import { LayoutDashboard } from '../../../../components/LayoutDashboard';
 import { showAlert } from '../../../../store/alert/alertActions';
@@ -19,7 +19,7 @@ const AddDishesTypePage = () => {
 			return dispatch(showAlert(AlertTypes.error, 'Поле не может быть пустым'));
 		}
 
-		const { message, type } = await addCategory(category);
+		const { message, type } = await createCategory(category);
 
 		if (type) {
 			return dispatch(showAlert(AlertTypes.success, message));

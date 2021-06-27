@@ -5,10 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { DishesItem } from '../../../components/dashboard/dishes/DishesItem';
 import { LayoutDashboard } from '../../../components/LayoutDashboard';
-import { selectIsAuth } from '../../../store/selectors';
+import { selectDishes, selectIsAuth } from '../../../store/selectors';
 import { checkAuth } from '../../../store/user/userActions';
 import { Dish } from '../../../types';
 import { A } from '../../../components/A';
+import {
+	deleteDish,
+	getAllDishesAction,
+} from '../../../store/dishes/dishesActions';
 
 interface DishesProps {
 	dishes: Dish[];
@@ -16,7 +20,13 @@ interface DishesProps {
 
 const Dishes: FC<DishesProps> = ({ dishes }) => {
 	const isAuth = useSelector(selectIsAuth);
+	const allDishes = useSelector(selectDishes);
+
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getAllDishesAction(dishes));
+	}, [dishes]);
 
 	useEffect(() => {
 		if (!isAuth && localStorage.getItem('token')) {
@@ -26,11 +36,15 @@ const Dishes: FC<DishesProps> = ({ dishes }) => {
 
 	const handleClickDeleteDish = (
 		e: MouseEvent<HTMLButtonElement>,
-		id: string
+		id: string | undefined
 	) => {
 		e.preventDefault();
 
-		console.log('Create delete function', id);
+		const isOk = confirm('Вы уверены, что хотите удалить блюдо?');
+
+		if (!isOk) return;
+
+		dispatch(deleteDish(id));
 	};
 
 	return (
@@ -42,7 +56,12 @@ const Dishes: FC<DishesProps> = ({ dishes }) => {
 					className='py-2 px-4 border border-green-500 bg-green-500 text-white rounded-lg'
 				/>
 			</div>
-			{dishes.map((dish) => (
+			{allDishes.length === 0 && (
+				<p className='text-lg text-center font-light py-4'>
+					Добавьте ваше первое блюдо
+				</p>
+			)}
+			{allDishes.map((dish) => (
 				<DishesItem
 					dish={dish}
 					key={dish._id}
