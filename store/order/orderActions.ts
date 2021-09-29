@@ -17,12 +17,15 @@ const deleteDishesAction = (order: OrderState) => ({
 	payload: order,
 });
 
-export const deleteDishes = (order: OrderState, key: string) => {
+export const deleteDishes = (order: OrderState, key: string | undefined) => {
 	const newOrder = { ...order.order };
-	const deleteDishesCount = newOrder[key].length;
-	const deletePrice = newOrder[key].reduce((acc, el) => acc + el.price, 0);
+	const deleteDishesCount = newOrder[key as string].length;
+	const deletePrice = newOrder[key as string].reduce(
+		(acc, el) => acc + el.price,
+		0
+	);
 
-	const isDelete = delete newOrder[key];
+	const isDelete = delete newOrder[key as string];
 
 	if (isDelete) {
 		const payload: OrderState = {
@@ -35,15 +38,18 @@ export const deleteDishes = (order: OrderState, key: string) => {
 	}
 };
 
-export const minusOneDish = (order: OrderState, key: string) => {
+export const minusOneDish = (order: OrderState, key: string | undefined) => {
 	const newOrder = { ...order.order };
 	let payload: OrderState;
 
-	if (newOrder[key].length === 1) {
-		const deleteDishesCount = newOrder[key].length;
-		const deletePrice = newOrder[key].reduce((acc, el) => acc + el.price, 0);
+	if (newOrder[key as string].length === 1) {
+		const deleteDishesCount = newOrder[key as string].length;
+		const deletePrice = newOrder[key as string].reduce(
+			(acc, el) => acc + el.price,
+			0
+		);
 
-		const isDelete = delete newOrder[key];
+		const isDelete = delete newOrder[key as string];
 
 		if (isDelete) {
 			payload = {
@@ -56,7 +62,7 @@ export const minusOneDish = (order: OrderState, key: string) => {
 		return new Error('Что-то явно не учтено');
 	}
 
-	const deletedEl = newOrder[key].pop();
+	const deletedEl = newOrder[key as string].pop();
 
 	if (deletedEl) {
 		payload = {

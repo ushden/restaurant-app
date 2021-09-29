@@ -31,7 +31,7 @@ export const Header: FC = () => {
 			<nav
 				className={`absolute ${
 					menuVisible ? 'flex' : 'hidden'
-				} md:relative top-16 left-0 md:top-0 z-50 bg-restWhite md:bg-restBg md:flex flex-col md:flex-row md:justify-between md:items-center font-semibold w-full bg-white shadow-md rounded-lg p-3 md:w-auto md:rounded-none md:shadow-none md:p-0`}>
+				} md:relative top-16 left-0 md:top-0 z-0 bg-restWhite md:bg-restBg md:flex flex-col md:flex-row md:justify-between md:items-center font-semibold w-full bg-white shadow-md rounded-lg p-3 md:w-auto md:rounded-none md:shadow-none md:p-0`}>
 				<ul className='text-center md:flex md:flex-row md:space-x-6'>
 					<li className='pb-2 hover:text-yellow-500 transition'>
 						<A

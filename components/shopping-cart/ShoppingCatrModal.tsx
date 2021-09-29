@@ -30,7 +30,7 @@ export const ShoppingCatrModal = memo(() => {
 			shouldCloseOnEsc={true}
 			onRequestClose={() => dispatch(closeShoppingCartAction())}
 			shouldCloseOnOverlayClick={true}
-			className='absolute top-0 bottom-0 left-auto right-auto md:-translate-x-2/4 md:-translate-y-2/4 bg-white p-2 overflow-y-auto w-full md:w-3/5 animate-showCart'
+			className='absolute top-0 bottom-0 left-auto right-auto z-50 md:-translate-x-2/4 md:-translate-y-2/4 bg-white p-2 overflow-y-auto w-full md:w-3/5 animate-showCart'
 			onAfterClose={onAfterClose}
 			onAfterOpen={onAfterOpen}>
 			<ShoppingCartModalHeader />

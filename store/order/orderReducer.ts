@@ -16,8 +16,10 @@ export const orderReducer = (
 				...state,
 				order: {
 					...state.order,
-					[action.payload._id]: state.order[action.payload._id]
-						? [...state.order[action.payload._id], action.payload]
+					[action.payload._id as string]: state.order[
+						action.payload._id as string
+					]
+						? [...state.order[action.payload._id as string], action.payload]
 						: [action.payload],
 				},
 				dishesCount: (state.dishesCount += 1),
